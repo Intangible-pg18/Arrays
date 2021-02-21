@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int Search(int a[], int n, int x)
+{
+    int l = 0, r = (n - 1);
+    while (l <= r)
+    {   
+        int pos = l + (((double)(r - l) / (a[r] - a[l])) * (x - a[l]));
+        if (a[pos] == x)
+            return pos;
+        if (a[pos] < x)
+            l = pos + 1;
+        else
+            r = pos - 1;
+    }
+    return -1;
+}
+
+int main()
+{
+    int a[] = {-1, 99, 35, 1, 180, 26, 1};
+    int n = sizeof(a)/sizeof(a[0]);
+    int x = 47;
+    int pos = Search(a, n, x);
+    if (pos != -1)
+        cout << "Element found at index " << pos;
+    else
+        cout << "Element not found.";
+    return 0;
+}
