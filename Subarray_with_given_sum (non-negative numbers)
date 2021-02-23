@@ -1,0 +1,31 @@
+#include <iostream> 
+using namespace std; 
+
+int subArray(int a[], int n, int sum) 
+{ 
+    int cur_sum = a[0], start = 0, i; 
+    for (i = 1; i <= n; i++) { 
+        while (cur_sum > sum && start < i - 1) { 
+            cur_sum = cur_sum - a[start]; 
+            start++; 
+        } 
+        if (cur_sum == sum) { 
+            cout << "Sum found between indexes "
+                 << start << " and " << i - 1; 
+            return 1; 
+        }  
+        if (i < n) 
+            cur_sum = cur_sum + a[i]; 
+    } 
+    cout << "No subarray found"; 
+    return 0; 
+} 
+   
+int main() 
+{ 
+    int a[] = {1, 4, 20, 3, 10, 5}; 
+    int n = sizeof(a) / sizeof(a[0]); 
+    int sum = 33; 
+    subArray(a, n, sum); 
+    return 0; 
+} 
